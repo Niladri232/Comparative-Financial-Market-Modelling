@@ -1,469 +1,484 @@
-\# Random Walk vs Brownian Motion vs Real Stock Markets
+# Comparative Financial Market Modelling
 
+### A Statistical, Econometric and Machine Learning Investigation of Financial Markets
 
+---
 
-\## A Statistical and Machine Learning Investigation Using NIFTY 50
+## 1. Project Overview
 
+Financial markets exhibit complex statistical behaviour characterised by uncertainty, volatility clustering, non-normal return distributions and changing market conditions. Classical stochastic-process models provide a mathematical foundation for understanding financial price movements, but their assumptions may not fully capture the empirical characteristics of real-world financial markets.
 
+**Comparative Financial Market Modelling** investigates the relationship between theoretical stochastic-process models and the observed behaviour of financial time series.
 
-\### 1. Project Overview
+The initial empirical investigation focuses on the **NIFTY 50 index**, examining the performance and limitations of different approaches to financial market modelling.
 
+The project integrates concepts from financial mathematics, probability theory, statistical analysis, econometrics and machine learning.
 
+The current implementation includes:
 
-This project investigates the relationship between classical stochastic-process models and the empirical behaviour of financial markets. Using historical NIFTY 50 data, it examines whether commonly used theoretical models adequately capture the statistical characteristics of real stock-market movements.
+- Random Walk simulations
+- Standard Brownian Motion
+- Geometric Brownian Motion (GBM)
+- Gaussian GARCH(1,1)
+- Student's t-GARCH
+- Gaussian Hidden Markov Models (HMM)
+- Exploratory Data Analysis and statistical diagnostics
 
+The broader objective is to develop a comparative framework that can eventually be extended to multiple financial indices, sectors and individual securities.
 
+## 2. Research Motivation and Questions
 
-The study compares Random Walk, Brownian Motion, and Geometric Brownian Motion (GBM) frameworks with more flexible models that account for time-varying volatility and market regimes.
+Financial asset prices are frequently modelled using stochastic processes. However, real financial returns often exhibit characteristics such as heavy tails, volatility clustering and structural changes that challenge the assumptions of simpler models.
 
+This project addresses the following research questions:
 
+1. How well do Random Walk and Brownian Motion frameworks represent the behaviour of financial markets?
+2. How effectively does Geometric Brownian Motion reproduce the dynamics of observed financial prices?
+3. Does GARCH modelling capture the volatility clustering present in financial returns?
+4. Does a Student's t innovation specification provide a more suitable representation of extreme return observations than Gaussian innovations?
+5. Can Hidden Markov Models identify distinct latent market regimes?
+6. What are the limitations of these models when applied to empirical financial time series?
 
-The project combines financial mathematics, statistical analysis, econometric modelling, and machine learning.
-
-
-
-\### 2. Research Objectives
-
-
+## 3. Research Objectives
 
 The main objectives are:
 
+- To investigate the Random Walk hypothesis in financial time series.
+- To study the mathematical properties of Brownian Motion and its relevance to financial markets.
+- To simulate financial price dynamics using Geometric Brownian Motion.
+- To examine volatility clustering through GARCH modelling.
+- To compare Gaussian and Student's t innovation specifications.
+- To identify latent market regimes using Hidden Markov Models.
+- To evaluate the limitations of classical stochastic and econometric models when applied to real financial data.
+- To establish a foundation for future comparative financial modelling using machine learning techniques.
 
+## 4. Dataset and Data Description
 
-\- To investigate the Random Walk hypothesis in financial time series.
+### 4.1 Data Source
 
-\- To study the properties of Brownian Motion and its relevance to financial markets.
-
-\- To simulate stock-price dynamics using Geometric Brownian Motion.
-
-\- To examine volatility clustering using GARCH models.
-
-\- To compare Gaussian and Student's t innovations in GARCH modelling.
-
-\- To identify different market regimes using Hidden Markov Models.
-
-\- To evaluate the limitations of classical stochastic models when applied to real financial data.
-
-
-
-\### 3. Dataset
-
-
-
-The empirical analysis uses the NIFTY 50 index.
-
-
+The initial empirical investigation uses historical daily data for the NIFTY 50 index, obtained through Yahoo Finance.
 
 | Property | Description |
-
 |---|---|
-
 | Financial instrument | NIFTY 50 |
-
 | Data source | Yahoo Finance |
-
 | Ticker | `^NSEI` |
-
 | Frequency | Daily |
-
 | Sample period | 4 January 2010 – 11 September 2026 |
-
 | Price observations | 4,101 |
-
 | Valid daily returns | 4,100 |
 
+### 4.2 Return Calculation
 
+Daily logarithmic returns are calculated from consecutive closing index values:
 
-Daily logarithmic returns are calculated as:
+\[
+r_t = \ln\left(\frac{P_t}{P_{t-1}}\right)
+\]
 
+where:
 
+- \(P_t\) represents the closing index value at time \(t\).
+- \(P_{t-1}\) represents the previous trading day's closing index value.
+- \(r_t\) represents the logarithmic return.
 
-\\\[
+Logarithmic returns are used throughout the empirical analysis to investigate the statistical properties of financial market movements.
 
-r\_t = \\ln\\left(\\frac{P\_t}{P\_{t-1}}\\right)
+## 5. Methodology and Models
 
-\\]
+The project implements several stochastic, statistical and econometric approaches.
 
+### 5.1 Exploratory Data Analysis (EDA)
 
+Exploratory Data Analysis is conducted to understand the characteristics of the NIFTY 50 price series and its corresponding returns.
 
-where \\(P\_t\\) denotes the closing index value at time \\(t\\).
+The analysis includes:
 
+- Historical price visualisation.
+- Daily return visualisation.
+- Return distribution analysis.
+- Skewness and kurtosis.
+- Autocorrelation analysis.
+- Statistical diagnostic tests.
 
+### 5.2 Random Walk
 
-\### 4. Methodology and Models
+The Random Walk framework represents price movements as accumulated random increments.
 
+A basic representation is:
 
+\[
+P_t = P_{t-1} + \epsilon_t
+\]
 
-The project implements the following models.
+where \(\epsilon_t\) represents a random increment.
 
+The model is used to investigate the evolution of financial prices under a random movement assumption and to generate simulated price paths.
 
+### 5.3 Brownian Motion
 
-\#### 4.1 Exploratory Data Analysis
+Standard Brownian Motion is a continuous-time stochastic process characterised by:
 
+- \(W_0=0\).
+- Independent increments.
+- Normally distributed increments.
+- Continuous sample paths.
 
+Its increment structure is:
 
-\- Price and return visualisation
+\[
+W_{t+\Delta t}-W_t
+\sim N(0,\Delta t)
+\]
 
-\- Return distribution analysis
+The simulation examines the properties of Brownian Motion and the distribution of its resulting terminal values.
 
-\- Skewness and kurtosis
+### 5.4 Geometric Brownian Motion (GBM)
 
-\- Autocorrelation analysis
+Geometric Brownian Motion is commonly used to represent the evolution of positive financial asset prices.
 
-\- Statistical diagnostic tests
+It is defined by the stochastic differential equation:
 
+\[
+dS_t = \mu S_t\,dt+\sigma S_t\,dW_t
+\]
 
+where:
 
-\#### 4.2 Random Walk
+- \(S_t\) represents the asset price.
+- \(\mu\) represents the drift parameter.
+- \(\sigma\) represents volatility.
+- \(W_t\) represents standard Brownian Motion.
 
+The GBM model is implemented to simulate financial price trajectories using historically estimated return parameters.
 
+### 5.5 Gaussian GARCH(1,1)
 
-The Random Walk framework is used to investigate the evolution of financial prices through accumulated random increments.
+Financial returns frequently exhibit volatility clustering, where periods of high volatility tend to be followed by further periods of high volatility.
 
+The GARCH(1,1) model captures this behaviour through a time-varying conditional variance.
 
+The model is specified as:
 
-\#### 4.3 Brownian Motion
+\[
+r_t=\mu+\epsilon_t
+\]
 
+\[
+\epsilon_t=\sigma_t z_t
+\]
 
+\[
+\sigma_t^2=
+\omega+\alpha\epsilon_{t-1}^2+
+\beta\sigma_{t-1}^2
+\]
 
-Standard Brownian Motion is simulated to examine normally distributed independent increments and the resulting distribution of terminal values.
+where:
 
+- \(\omega\) is the variance intercept.
+- \(\alpha\) captures the effect of past squared shocks.
+- \(\beta\) captures volatility persistence.
+- \(\sigma_t^2\) represents conditional variance.
 
+A Gaussian GARCH(1,1) specification is estimated to investigate conditional heteroskedasticity in financial returns.
 
-\#### 4.4 Geometric Brownian Motion
+### 5.6 Student's t-GARCH
 
+Financial return distributions may exhibit heavier tails than the normal distribution.
 
+To investigate this characteristic, the project implements a GARCH model with Student's t innovations.
 
-GBM models the evolution of positive asset prices using a continuous-time stochastic process.
+This specification allows the conditional return distribution to accommodate heavier tails and provides a comparison with the Gaussian GARCH model.
 
+The comparison focuses on the role of the assumed innovation distribution in modelling financial return behaviour.
 
+### 5.7 Hidden Markov Models (HMM)
 
-\#### 4.5 GARCH(1,1)
+Financial markets may move between different latent regimes, such as relatively calm and highly volatile periods.
 
+Hidden Markov Models provide a probabilistic framework for identifying unobserved states underlying an observed time series.
 
+The project implements:
 
-A Gaussian GARCH(1,1) model is estimated to investigate conditional heteroskedasticity and volatility clustering.
+- Two-state Gaussian Hidden Markov Model.
+- Three-state Gaussian Hidden Markov Model.
 
+The models are used to identify latent market regimes and examine their associated characteristics.
 
+The resulting classifications are model-based estimates. Full-sample regime classifications should be interpreted as retrospective analysis rather than guaranteed real-time predictions.
 
-\#### 4.6 Student's t-GARCH
+## 6. Experimental Results and Outputs
 
+The project generates numerical results, model estimates, statistical summaries and visualisations.
 
+The outputs are organised into two main directories:
 
-The Student's t innovation specification is compared with the Gaussian GARCH model to examine the role of heavier-tailed return distributions.
+**Figures (`figures/`)**
 
+Contains visualisations associated with:
 
+- Random Walk simulations.
+- Brownian Motion simulations.
+- Geometric Brownian Motion.
+- Gaussian GARCH.
+- Student's t-GARCH.
+- Hidden Markov Models.
 
-\#### 4.7 Hidden Markov Models
+**Results (`results/`)**
 
+Contains:
 
+- Model-specific numerical outputs.
+- Simulation results.
+- Statistical summaries.
+- Model estimates.
+- Market regime classifications.
+- EDA summary statistics.
+- Statistical diagnostic test results.
 
-Two-state and three-state Gaussian Hidden Markov Models are implemented to identify latent market regimes and examine their associated characteristics.
+The numerical outputs and figures can be used to examine the relationship between theoretical model assumptions and the empirical characteristics of the NIFTY 50 index.
 
-
-
-\### 5. Repository Structure
-
-
+## 7. Repository Structure
 
 ```text
-
-Finance\_project/
-
+Comparative-Financial-Market-Modelling/
 │
-
 ├── data/
-
 │   ├── raw/
-
 │   │   └── nifty50.csv
-
+│   │
 │   └── processed/
-
 │       └── nifty50.csv
-
 │
-
 ├── figures/
-
-│   ├── random\_walk/
-
-│   ├── brownian\_motion/
-
+│   ├── random_walk/
+│   ├── brownian_motion/
 │   ├── gbm/
-
 │   ├── garch/
-
-│   ├── garch\_student\_t/
-
+│   ├── garch_student_t/
 │   └── hmm/
-
 │
-
 ├── results/
-
-│   ├── random\_walk/
-
-│   ├── brownian\_motion/
-
+│   ├── random_walk/
+│   ├── brownian_motion/
 │   ├── gbm/
-
 │   ├── garch/
-
-│   ├── garch\_student\_t/
-
+│   ├── garch_student_t/
 │   ├── hmm/
-
-│   ├── eda\_summary.csv
-
-│   └── statistical\_tests.csv
-
+│   ├── eda_summary.csv
+│   └── statistical_tests.csv
 │
-
 ├── src/
-
-│   ├── download\_data.py
-
-│   ├── check\_data.py
-
-│   ├── preprocess\_data.py
-
-│   ├── verify\_processed\_data.py
-
+│   ├── download_data.py
+│   ├── check_data.py
+│   ├── preprocess_data.py
+│   ├── verify_processed_data.py
 │   ├── eda.py
-
-│   ├── statistical\_tests.py
-
-│   ├── random\_walk.py
-
-│   ├── brownian\_motion.py
-
+│   ├── statistical_tests.py
+│   ├── random_walk.py
+│   ├── brownian_motion.py
 │   ├── gbm.py
-
 │   ├── garch.py
-
-│   ├── garch\_student\_t.py
-
-│   ├── hmm\_regime\_detection.py
-
-│   └── hmm\_visualization.py
-
+│   ├── garch_student_t.py
+│   ├── hmm_regime_detection.py
+│   └── hmm_visualization.py
 │
-
 ├── notebooks/
-
+│
+├── .gitignore
 ├── README.md
-
-├── requirements.txt
-
-└── .gitignore
-
+└── requirements.txt
 ```
 
+## 8. Installation and Setup
 
-
-\### 6. Installation
-
-
-
-Clone the repository:
-
-
+### 8.1 Clone the Repository
 
 ```bash
+git clone https://github.com/Niladri232/Comparative-Financial-Market-Modelling.git
 
-git clone <YOUR\_REPOSITORY\_URL>
-
-cd Finance\_project
-
+cd Comparative-Financial-Market-Modelling
 ```
 
-
-
-Create a virtual environment:
-
-
+### 8.2 Create a Virtual Environment
 
 ```bash
-
 python -m venv .venv
-
 ```
 
+### 8.3 Activate the Virtual Environment
 
+**Windows:**
 
-Activate it on Windows:
+```cmd
+.venv\Scripts\activate
+```
 
-
+**Linux/macOS:**
 
 ```bash
-
-.venv\\Scripts\\activate
-
+source .venv/bin/activate
 ```
 
+### 8.4 Install Dependencies
 
+Upgrade pip:
+
+```bash
+python -m pip install --upgrade pip
+```
 
 Install the required packages:
 
-
-
 ```bash
-
-python -m pip install --upgrade pip
-
 pip install -r requirements.txt
-
 ```
 
+## 9. Execution Workflow
 
+All Python scripts are located in the `src/` directory.
 
-\### 7. Execution
+Run the commands from the repository's root directory.
 
-
-
-The main Python scripts are located in the `src/` directory.
-
-
-
-The general workflow is:
-
-
-
-1\. Download and inspect the historical data.
-
-2\. Preprocess and verify the dataset.
-
-3\. Perform exploratory data analysis and statistical testing.
-
-4\. Implement Random Walk, Brownian Motion, and GBM simulations.
-
-5\. Estimate Gaussian GARCH and Student's t-GARCH models.
-
-6\. Estimate Hidden Markov Models and visualise market regimes.
-
-
-
-For example:
-
-
+### Step 1: Data Collection and Preparation
 
 ```bash
-
-python src/eda.py
-
-python src/random\_walk.py
-
-python src/brownian\_motion.py
-
-python src/gbm.py
-
-python src/garch.py
-
-python src/garch\_student\_t.py
-
-python src/hmm\_regime\_detection.py
-
-python src/hmm\_visualization.py
-
-python src/statistical\_tests.py
-
+python src/download_data.py
+python src/check_data.py
+python src/preprocess_data.py
+python src/verify_processed_data.py
 ```
 
+### Step 2: Exploratory and Statistical Analysis
 
+```bash
+python src/eda.py
+python src/statistical_tests.py
+```
 
-Run the scripts from the project root directory. Some scripts depend on the processed dataset and outputs generated by earlier steps.
+### Step 3: Stochastic Process Simulations
 
+```bash
+python src/random_walk.py
+python src/brownian_motion.py
+python src/gbm.py
+```
 
+### Step 4: Volatility Modelling
 
-\### 8. Results and Outputs
+```bash
+python src/garch.py
+python src/garch_student_t.py
+```
 
+### Step 5: Market Regime Detection
 
+```bash
+python src/hmm_regime_detection.py
+python src/hmm_visualization.py
+```
 
-The project stores its outputs in two main directories:
+**Note:** Some scripts depend on processed datasets or output files generated by earlier scripts. Follow the workflow above and ensure the required input files exist before running individual models. Data downloading may also require an active internet connection.
 
+## 10. Limitations
 
+Despite providing a framework for analysing financial market behaviour, the current implementation has several limitations:
 
-\- `figures/`: Visualisations of simulations, return distributions, conditional volatility, and estimated market regimes.
+- The initial empirical investigation focuses on a single financial index, NIFTY 50.
+- Stochastic simulations depend on historically estimated parameters.
+- Standard Brownian Motion and GBM rely on assumptions that may not fully reflect actual market dynamics.
+- Gaussian models may not adequately represent extreme financial return observations.
+- GARCH models capture conditional volatility but do not explain every source of market variation.
+- Hidden Markov Model classifications depend on the selected number of states, model specification and estimation sample.
+- Full-sample regime classifications are retrospective and should not automatically be interpreted as real-time forecasts.
+- The current implementation does not establish a guaranteed predictive or profitable investment strategy.
 
-\- `results/`: Model parameters, statistical summaries, diagnostic results, model comparisons, and regime classifications.
+## 11. Future Research Directions
 
-
-
-These outputs allow the theoretical models to be examined alongside the empirical characteristics of the NIFTY 50 index.
-
-
-
-\### 9. Limitations
-
-
-
-\- The empirical investigation focuses on a single market index.
-
-\- Stochastic simulations depend on estimated historical parameters.
-
-\- Gaussian models may not adequately represent extreme market movements.
-
-\- GARCH specifications capture conditional volatility but do not explain every source of market variation.
-
-\- Hidden Markov Model regime classifications are model-dependent and may be sensitive to the selected number of states and estimation sample.
-
-\- The analysis should not be interpreted as a guaranteed stock-market forecasting or investment strategy.
-
-
-
-\### 10. Future Scope
-
-
+The project is designed to support further development in financial econometrics and data-driven financial modelling.
 
 Potential extensions include:
 
+### 11.1 Comparative Financial Market Analysis
 
+- Extend the empirical analysis to multiple financial indices.
+- Investigate sector-specific indices.
+- Include individual stocks from different sectors.
+- Compare the statistical properties of different financial instruments.
 
-\- Out-of-sample model evaluation.
+### 11.2 Advanced Econometric Modelling
 
-\- Alternative volatility models such as EGARCH and GJR-GARCH.
+- EGARCH and GJR-GARCH models.
+- Advanced volatility forecasting.
+- Regime-switching volatility models.
+- Out-of-sample model evaluation.
 
-\- Comparison across multiple financial indices.
+### 11.3 Machine Learning and Deep Learning
 
-\- Advanced regime-switching volatility models.
+- Random Forest.
+- Support Vector Machines.
+- XGBoost.
+- Long Short-Term Memory Networks (LSTM).
+- Gated Recurrent Units (GRU).
+- Transformer-based time-series models.
 
-\- Machine learning-based volatility forecasting.
+### 11.4 Financial Risk Analysis
 
-\- Risk measurement using Value at Risk and Expected Shortfall.
+- Value at Risk (VaR).
+- Expected Shortfall (ES).
+- Portfolio risk analysis.
+- Volatility forecasting.
+- Market regime prediction.
 
+These are planned research extensions and are not claimed as completed implementations.
 
+## 12. Technologies and Libraries
 
-\### 11. Technologies Used
+The project uses the following technologies:
 
+| Technology | Application |
+|---|---|
+| Python | Programming and modelling |
+| NumPy | Numerical computation |
+| Pandas | Data manipulation |
+| Matplotlib | Data visualisation |
+| SciPy | Statistical computation |
+| Statsmodels | Statistical analysis |
+| ARCH | GARCH modelling |
+| hmmlearn | Hidden Markov Models |
+| yfinance | Financial data acquisition |
 
+## 13. Project Status
 
-\- Python
+**Current implementation:**
 
-\- NumPy
+- NIFTY 50 historical data collection and preprocessing.
+- Exploratory Data Analysis.
+- Statistical diagnostic testing.
+- Random Walk simulation.
+- Brownian Motion simulation.
+- Geometric Brownian Motion simulation.
+- Gaussian GARCH(1,1) estimation.
+- Student's t-GARCH estimation.
+- Two-state and three-state Gaussian HMM implementation.
+- Numerical results and visualisations.
 
-\- Pandas
+**Research direction:** Expansion towards comparative financial market modelling, advanced econometric methods and machine learning-based financial analysis.
 
-\- Matplotlib
+## 14. Author and Project Information
 
-\- SciPy
+**Project Name:** Comparative Financial Market Modelling
 
-\- Statsmodels
+**Research Area:** Financial Economics, Stochastic Processes, Financial Econometrics, Statistical Modelling and Machine Learning
 
-\- ARCH
+**Primary Empirical Application:** NIFTY 50 Financial Time Series
 
-\- hmmlearn
+**Data Source:** Yahoo Finance
 
-\- yfinance
+**GitHub Repository:**  
+https://github.com/Niladri232/Comparative-Financial-Market-Modelling
 
+---
 
-
-\---
-
-
-
-\*\*Project Category:\*\* Financial Econometrics | Stochastic Processes | Statistical Modelling | Machine Learning
-
-
-
-\*\*Primary Application:\*\* Empirical analysis of NIFTY 50 financial time series.
+*This project is developed as an academic and research-oriented investigation into the statistical and mathematical modelling of financial markets. It is intended for educational and research purposes and should not be considered financial or investment advice.*
