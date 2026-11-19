@@ -1,0 +1,41 @@
+
+RANDOM WALK SIMULATION - NIFTY 50
+=================================
+
+Dataset:
+NIFTY 50 daily adjusted closing prices
+Period: 04 January 2010 - 11 September 2026
+
+Simulation:
+Gaussian Random Walk with drift
+Number of simulations: 1000
+Trading days per simulation: 4100
+Random seed: 42
+
+Estimated Parameters:
+Daily mean return: 0.00036532
+Daily volatility: 0.01039576
+Annualized return: 9.2061%
+Annualized volatility: 16.5028%
+
+Main Findings:
+1. Simulated mean is close to the actual mean.
+2. Simulated standard deviation is close to actual volatility.
+3. Actual returns exhibit negative skewness.
+4. Actual returns exhibit substantial excess kurtosis.
+5. Gaussian simulations do not reproduce the observed
+   heavy tails and negative skewness.
+6. Actual extreme returns exceed the simulated sample
+   extremes in magnitude.
+7. Simulated terminal prices have a wide, right-skewed
+   distribution.
+
+Conclusion:
+The Gaussian Random Walk provides a useful baseline for
+describing the average return and unconditional volatility
+of NIFTY 50. However, it fails to reproduce important
+distributional characteristics of real financial returns,
+particularly negative skewness and excess kurtosis.
+
+Further modelling is required to investigate heavy tails,
+volatility clustering and changing market conditions.

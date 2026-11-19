@@ -1,0 +1,16 @@
+Parameter,Value
+Number of paths,1000.0
+Number of trading days,4100.0
+Trading days per year,252.0
+Initial price,5232.2001953125
+Daily mean log return,0.00036532266554589385
+Daily standard deviation,0.010395760727631164
+Annual drift,0.10567836369694121
+Annual volatility,0.1650275854478636
+Annual log drift,0.09206131171756525
+Time increment,0.003968253968253968
+Total simulation time,16.26984126984127
+Theoretical terminal mean,29200.974443165745
+Theoretical terminal median,23398.09960937469
+Theoretical terminal standard deviation,21803.560020515044
+Random seed,42.0

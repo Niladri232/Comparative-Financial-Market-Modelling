@@ -1,0 +1,3 @@
+State,Regime,Mean_Daily_Return_Percent,Daily_Volatility_Percent,Annualised_Volatility_Percent,Annualised_Mean_Return_Percent,Starting_Probability,Probability_Staying_In_State,Expected_Duration_Days,Number_of_Observations,Percentage_of_Observations
+0,Low Volatility,0.07331239950783464,0.7528583595569182,11.951255951061919,18.47472467597433,1.0,0.9838888276814611,62.06872971306476,3411,83.1951219512195
+1,High Volatility,-0.11719500515389154,1.78832264542049,28.38874190236655,-29.53314129878067,1.3140792302884812e-31,0.9327002942804348,14.858905983437044,689,16.804878048780488

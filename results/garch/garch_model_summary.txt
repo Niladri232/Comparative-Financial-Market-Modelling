@@ -1,0 +1,46 @@
+                     Constant Mean - GARCH Model Results
+==============================================================================
+Dep. Variable:             Log_Return   R-squared:                       0.000
+Mean Model:             Constant Mean   Adj. R-squared:                  0.000
+Vol Model:                      GARCH   Log-Likelihood:               -5458.77
+Distribution:                  Normal   AIC:                           10925.5
+Method:            Maximum Likelihood   BIC:                           10950.8
+                                        No. Observations:                 4100
+Date:                Wed, Nov 18 2026   Df Residuals:                     4099
+Time:                        14:37:41   Df Model:                            1
+                                 Mean Model
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+mu             0.0606  1.369e-02      4.424  9.692e-06 [3.373e-02,8.740e-02]
+                              Volatility Model
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          0.0205  5.385e-03      3.798  1.459e-04 [9.898e-03,3.101e-02]
+alpha[1]       0.0896  1.406e-02      6.374  1.838e-10   [6.207e-02,  0.117]
+beta[1]        0.8918  1.538e-02     57.988      0.000     [  0.862,  0.922]
+============================================================================
+
+Covariance estimator: robust
+
+GARCH(1,1) DIAGNOSTIC RESULTS
+=======================================================
+
+Alpha + Beta: 0.98144688
+
+Standardised residual JB p-value: 4.7189745e-108
+
+ARCH-LM p-value: 0.67353747
+
+Ljung-Box on standardised residuals:
+      lb_stat  lb_pvalue
+5   15.313419   0.009104
+10  21.106242   0.020365
+20  26.980763   0.135806
+
+Ljung-Box on squared standardised residuals:
+      lb_stat  lb_pvalue
+5    3.823149   0.575149
+10   7.554673   0.672246
+20  14.050591   0.827922

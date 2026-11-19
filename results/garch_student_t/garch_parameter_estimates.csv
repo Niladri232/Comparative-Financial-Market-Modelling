@@ -1,0 +1,21 @@
+Model,Parameter,Estimate
+"Gaussian GARCH(1,1)",mu,0.06056870439045263
+"Gaussian GARCH(1,1)",omega,0.020452324847493302
+"Gaussian GARCH(1,1)",alpha,0.08962842281509702
+"Gaussian GARCH(1,1)",beta,0.8918184548312899
+"Gaussian GARCH(1,1)",alpha_plus_beta,0.9814468776463868
+"Gaussian GARCH(1,1)",nu,
+"Gaussian GARCH(1,1)",unconditional_daily_volatility_decimal,0.010499360235191156
+"Gaussian GARCH(1,1)",unconditional_annual_volatility_decimal,0.16667217664557857
+"Gaussian GARCH(1,1)",mean_conditional_daily_volatility_decimal,0.00964624953805148
+"Gaussian GARCH(1,1)",mean_conditional_annual_volatility_decimal,0.15312946417293544
+"Student's t-GARCH(1,1)",mu,0.06452317653802225
+"Student's t-GARCH(1,1)",omega,0.019556789295315014
+"Student's t-GARCH(1,1)",alpha,0.07518600036803132
+"Student's t-GARCH(1,1)",beta,0.9053344319963351
+"Student's t-GARCH(1,1)",alpha_plus_beta,0.9805204323643665
+"Student's t-GARCH(1,1)",nu,7.31515872414644
+"Student's t-GARCH(1,1)",unconditional_daily_volatility_decimal,0.010019801589328652
+"Student's t-GARCH(1,1)",unconditional_annual_volatility_decimal,0.1590594191494401
+"Student's t-GARCH(1,1)",mean_conditional_daily_volatility_decimal,0.009615016827127575
+"Student's t-GARCH(1,1)",mean_conditional_annual_volatility_decimal,0.1526336602576853

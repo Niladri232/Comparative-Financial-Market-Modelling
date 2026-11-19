@@ -1,0 +1,35 @@
+HIDDEN MARKOV MODEL: NIFTY 50
+=================================================================
+
+Observations: 4100
+Sample period: 2010-01-05 to 2026-09-11
+
+MODEL COMPARISON
+-----------------------------------------------------------------
+ Number_of_States  Log_Likelihood  Number_of_Parameters          AIC          BIC  Converged  Iterations
+                2    -5520.828722                     7 11055.657443 11099.888639       True          38
+                3    -5410.652187                    14 10849.304374 10937.766766       True         118
+
+2-STATE MODEL PARAMETERS
+-----------------------------------------------------------------
+ State          Regime  Mean_Daily_Return_Percent  Daily_Volatility_Percent  Annualised_Volatility_Percent  Annualised_Mean_Return_Percent  Starting_Probability  Probability_Staying_In_State  Expected_Duration_Days  Number_of_Observations  Percentage_of_Observations
+     0  Low Volatility                   0.073312                  0.752858                      11.951256                       18.474725          1.000000e+00                      0.983889               62.068730                    3411                   83.195122
+     1 High Volatility                  -0.117195                  1.788323                      28.388742                      -29.533141          1.314079e-31                      0.932700               14.858906                     689                   16.804878
+
+2-STATE TRANSITION MATRIX
+                 Low Volatility  High Volatility
+Low Volatility         0.983889         0.016111
+High Volatility        0.067300         0.932700
+
+3-STATE MODEL PARAMETERS
+-----------------------------------------------------------------
+ State            Regime  Mean_Daily_Return_Percent  Daily_Volatility_Percent  Annualised_Volatility_Percent  Annualised_Mean_Return_Percent  Starting_Probability  Probability_Staying_In_State  Expected_Duration_Days  Number_of_Observations  Percentage_of_Observations
+     0    Low Volatility                   0.088246                  0.641346                      10.181048                       22.238026          1.000000e+00                      0.980383               50.976371                    2133                   52.024390
+     1 Medium Volatility                  -0.013896                  1.156822                      18.363987                       -3.501791          1.213324e-74                      0.972816               36.786003                    1906                   46.487805
+     2   High Volatility                  -0.197587                  3.747629                      59.491763                      -49.791824         4.139742e-190                      0.870659                7.731511                      61                    1.487805
+
+3-STATE TRANSITION MATRIX
+                   Low Volatility  Medium Volatility  High Volatility
+Low Volatility           0.980383           0.019489         0.000128
+Medium Volatility        0.022294           0.972816         0.004890
+High Volatility          0.006625           0.122716         0.870659

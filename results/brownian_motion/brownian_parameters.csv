@@ -1,0 +1,11 @@
+Parameter,Value
+Number of simulated paths,1000.0
+Number of time steps,4100.0
+Trading days per year,252.0
+Time increment,0.003968253968253968
+Total simulation time (years),16.26984126984127
+Theoretical terminal mean,0.0
+Theoretical terminal standard deviation,4.033589130023194
+Historical daily mean,0.00036532266554589385
+Historical daily standard deviation,0.010395760727631164
+Random seed,42.0
